@@ -7,6 +7,8 @@ from flask import Flask, render_template, request, redirect
 from flask_security import login_required, Security, logout_user, roles_accepted
 from flask_restful import Resource, Api
 from controllers.query_Controller import Query_Create, Query_Others
+from controllers.faqs_Controller import FAQ_Create, FAQ_Others
+from controllers.users_Controller import User_Create, User_Others
 
 # Create app
 app = Flask(__name__)
@@ -140,6 +142,10 @@ def see_all_users():
 api = Api(app)
 api.add_resource(Query_Create, '/api/query')
 api.add_resource(Query_Others, '/api/query/<query_id>')
+api.add_resource(FAQ_Create, '/api/faq')
+api.add_resource(FAQ_Others, '/api/faq/<faq_id>')
+api.add_resource(User_Create, '/api/client')
+api.add_resource(User_Others, '/api/client/<client_id>')
 
 if __name__ == '__main__':
     app.run(port=environ.get("PORT", 8080), host='0.0.0.0', debug=True)
