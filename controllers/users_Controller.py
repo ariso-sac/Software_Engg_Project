@@ -14,29 +14,29 @@ def GetAllUsers():
     return d
 
 # def GetCardsbyUser(id):
-#     d=Cards.query.filter_by(query_id=id).all()
+#     d=Cards.query.filter_by(client_id=id).all()
 #     return d
 
 # def GetScoresbyUser(id):
-#     d=Scores.query.filter_by(query_id=id).all()
+#     d=Scores.query.filter_by(client_id=id).all()
 #     return d
 
 
 class User_Others(Resource):
-    def get(self, query_id):
-        g = GetUser(query_id)
+    def get(self, client_id):
+        g = GetUser(client_id)
         return g.GetDict(), 200
 
-    def delete(self, query_id):
-        g = GetUser(query_id)
+    def delete(self, client_id):
+        g = GetUser(client_id)
         if g == None:
             return {"Error": "Not Found"}, 404
         db.session.delete(g)
         db.session.commit()
         return g.GetDict(), 200
 
-    def put(self, query_id):
-        g = GetUser(query_id)
+    def put(self, client_id):
+        g = GetUser(client_id)
         if request.content_type == 'application/json':
             email = request.json['email']
             password = request.json['password']
@@ -52,7 +52,7 @@ class User_Others(Resource):
         g.email = email
         g.password = password
         g.role = role
-        g = GetUser(query_id)
+        g = GetUser(client_id)
         return g.GetDict(), 200
 
 
