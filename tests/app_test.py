@@ -10,7 +10,6 @@ def test_create_user():
         "role": "Student"
     }
 
-
     response = requests.post(url, data=payload)
 
     # Assert that the request-response cycle completed successfully.
@@ -19,22 +18,25 @@ def test_create_user():
     # Assert that the response body is what we expect.
     assert response.json()["email"] == "test@example.com"
     assert response.json()["password"] == "password"
-    assert response.json()["role_name"] == "Student"
+    assert response.json()['role_details']["role_name"] == "Student"
 
 
 def test_get_user_all():
-    url = "http://0.0.0.0:8080/api/client/1"
+    url = "http://0.0.0.0:8080/api/client"
 
     response = requests.get(url)
+    print(response.text)
 
     # Assert that the request-response cycle completed successfully.
     assert response.status_code == 200
 
 
 def test_get_user_unique():
-    url = "http://0.0.0.0:8080/api/client/1"
+    url = "http://0.0.0.0:8080/api/client/"
 
     response = requests.get(url)
+    print(response.text)
+
 
     # Assert that the request-response cycle completed successfully.
     assert response.status_code == 200
@@ -46,7 +48,7 @@ def test_get_user_unique():
 
 
 def test_put_user():
-    url = "http://0.0.0.0:8080/api/client"
+    url = "http://0.0.0.0:8080/api/client?query_id=1"
 
     payload = {
         "id": "1",
@@ -100,6 +102,7 @@ def create_faq():
 
 
     response = requests.post(url, data=payload)
+    print(response.text)
 
     # Assert that the request-response cycle completed successfully.
     assert response.status_code == 201
@@ -109,5 +112,5 @@ def create_faq():
     assert response.json()["solution"] == "No Solution"
 
 
-# if __name__ == "__main__":
-#     create_query()
+if __name__ == "__main__":
+    create_faq()
