@@ -9,6 +9,7 @@ from flask_restful import Resource, Api
 from controllers.query_Controller import Query_Create, Query_Others, Query_Search
 from controllers.faqs_Controller import FAQ_Create, FAQ_Others, FAQ_Search
 from controllers.users_Controller import User_Create, User_Others
+from flask_cors import CORS
 
 # Create app
 app = Flask(__name__)
@@ -17,6 +18,9 @@ app.config['SECRET_KEY'] = 'super-secret'
 app.config['SECURITY_PASSWORD_SALT'] = 'HelloWorld'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+
+# CORS
+CORS(app)
 
 # Create database connection object
 db.init_app(app)
@@ -58,13 +62,17 @@ def create_user():
 
 
 # Views
-@app.route("/")
+@app.route("/test")
 def HelloWorld():
     return '''<h1>Welcome user !!</h1>
                 <br/><hr/>
                 <h3>
                 We are glad to inform you that the application is running successfully !!
                 </h3>'''
+
+@app.route("/")
+def Index():
+    return render_template("index.html")
 
 
 # Signup code block
