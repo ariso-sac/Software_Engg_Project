@@ -55,7 +55,7 @@ def create_user():
         user_datastore.add_role_to_user(User.query.filter_by(
             email="student@mail.com").first(), Role.query.filter_by(name="Student").first())
         db.session.commit()
-       
+
 
 # Views
 @app.route("/")
@@ -155,8 +155,8 @@ api.add_resource(FAQ_Create, '/api/faq')
 api.add_resource(FAQ_Others, '/api/faq/<faq_id>')
 api.add_resource(User_Create, '/api/client')
 api.add_resource(User_Others, '/api/client/<client_id>')
-api.add_resource(Query_Search,'/api/search_by_query/<text>')
-api.add_resource(FAQ_Search,'/api/search_by_faq/<text>')
+api.add_resource(Query_Search, '/api/search_by_query/<text>')
+api.add_resource(FAQ_Search, '/api/search_by_faq/<text>')
 
 if __name__ == '__main__':
     app.run(port=environ.get("PORT", 8080), host='0.0.0.0', debug=True)

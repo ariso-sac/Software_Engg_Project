@@ -1,10 +1,9 @@
 # Online Support Ticket System
 # Online Support Ticket System for Software Engineering Project.
 ````
-This is online Support App. It has mutiple language support.
+This is Online Support App. It has mutiple language support.
 WE HAVE USER MANAGEMENT, LOGIN, QUERY REVIEW FACILITY.
 WE ALSO PROVIDE API IMPLEMENTATION.
-
 ````
 
 This is Final Submission for Software Engineering Project.
@@ -19,25 +18,37 @@ SQLITE
 ```
 
 THIS IS DESIGNED ON PYTHON 3.10
+Run and Tested on Ubuntu (Linux)
 
-
-QUICK SETUP OF ENVIROMENT AND RUN THE APPLICATION -
+# QUICK SETUP OF ENVIROMENT AND RUN THE APPLICATION -
 ```
 CLONE THIS REPO
 sudo chmod +x setup.sh
 ./setup.sh
+```
 
-METHOD TO RUN MANNUALY-
+## METHOD TO RUN MANNUALY-
 ```
 CLONE THIS REPO
 pip install -r requirements.txt
 python3 app.py
 ```
-# THE APP CREATES DATABASE FOR EVERY RUN. KINDLY DELETE PREVIOUS DATABASE.SQLITE3 FILE BEFORE ANY RUN.
-YOU MAY USE SHELL SCRIPT
+# METHOD TO INITIALIZE DB FOR TESTING -
 ```
-del.sh
+CLONE THIS REPO
+sudo chmod +x setup.sh
+./setup.sh
+python3 db_initializer.py
 ```
+# METHOD TO INITIALIZE DB FOR TESTING -
+```
+CLONE THIS REPO
+sudo chmod +x setup.sh
+./setup.sh
+sudo chmod +x sql.sh
+./sql.sh
+```
+
 # THE TEST FOLDER CONTAINS TEST.
 TO RUN TEST -
 ```

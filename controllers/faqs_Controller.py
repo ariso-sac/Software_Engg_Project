@@ -8,9 +8,11 @@ def GetFAQ(id):
     d = FAQ.query.filter_by(id=id).first()
     return d
 
+
 def GetAllFAQs():
     d = FAQ.query.all()
     return d
+
 
 def GetSimilarFAQ(text):
     d = FAQ.query.all(FAQ.issue.like('%'+text+'%'))
@@ -24,13 +26,15 @@ def GetSimilarFAQ(text):
 #     d=Scores.query.filter_by(query_id=id).all()
 #     return d
 
+
 class FAQ_Search(Resource):
-    def get(self,text):
+    def get(self, text):
         g = GetSimilarFAQ(text)
         a = []
         for x in g:
             a.append(x.GetDict())
         return a
+
 
 class FAQ_Others(Resource):
     def get(self, query_id):
@@ -74,8 +78,8 @@ class FAQ_Others(Resource):
 
 
 def creteFAQ(issue, solution,
-              # created_by, answered_by,
-              upvotes):
+             # created_by, answered_by,
+             upvotes):
     d = FAQ(
         issue=issue,
         solution=solution,
@@ -105,8 +109,8 @@ class FAQ_Create(Resource):
         if issue == None:
             return {"Error": "Incorrect Parameter"}, 400
         d = creteFAQ(issue, solution,
-                      # created_by, answered_by,
-                      upvotes)
+                     # created_by, answered_by,
+                     upvotes)
         return d.GetDict(), 201
 
     def get(self):
