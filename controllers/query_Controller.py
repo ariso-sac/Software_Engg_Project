@@ -13,6 +13,10 @@ def GetAllQuerys():
     d = Query.query.all()
     return d
 
+def GetSimilarQuerys(text):
+    d = Query.query.all(Query.issue.like('%'+text+'%'))
+    return d
+
 # def GetCardsbyQuery(id):
 #     d=Cards.query.filter_by(query_id=id).all()
 #     return d
@@ -21,6 +25,13 @@ def GetAllQuerys():
 #     d=Scores.query.filter_by(query_id=id).all()
 #     return d
 
+class Query_Search(Resource):
+    def get(self,text):
+        g = GetSimilarQuerys(text)
+        a = []
+        for x in g:
+            a.append(x.GetDict())
+        return a
 
 class Query_Others(Resource):
     def get(self, query_id):

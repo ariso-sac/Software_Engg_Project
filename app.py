@@ -6,8 +6,8 @@ from models import db
 from flask import Flask, render_template, request, redirect
 from flask_security import login_required, Security, logout_user, roles_accepted
 from flask_restful import Resource, Api
-from controllers.query_Controller import Query_Create, Query_Others
-from controllers.faqs_Controller import FAQ_Create, FAQ_Others
+from controllers.query_Controller import Query_Create, Query_Others, Query_Search
+from controllers.faqs_Controller import FAQ_Create, FAQ_Others, FAQ_Search
 from controllers.users_Controller import User_Create, User_Others
 
 # Create app
@@ -50,12 +50,21 @@ def create_user():
         user_datastore.add_role_to_user(User.query.filter_by(
             email="admin@mail.com").first(), Role.query.filter_by(name="Admin").first())
         db.session.commit()
-
+        user_datastore.create_user(
+            email="student@mail.com", password="toor", active=True)
+        user_datastore.add_role_to_user(User.query.filter_by(
+            email="student@mail.com").first(), Role.query.filter_by(name="Student").first())
+        db.session.commit()
+       
 
 # Views
 @app.route("/")
 def HelloWorld():
-    return "HelloWorld"
+    return '''<h1>Welcome user !!</h1>
+                <br/><hr/>
+                <h3>
+                We are glad to inform you that the application is running successfully !!
+                </h3>'''
 
 
 # Signup code block
@@ -98,7 +107,7 @@ def signup():
 
 
 # Signin code block
-@app.route('/signin', methods=['GET', 'POST'])
+@app.route('/sign_in', methods=['GET', 'POST'])
 def signin():
     msg = ""
     if request.method == 'POST':
@@ -146,6 +155,8 @@ api.add_resource(FAQ_Create, '/api/faq')
 api.add_resource(FAQ_Others, '/api/faq/<faq_id>')
 api.add_resource(User_Create, '/api/client')
 api.add_resource(User_Others, '/api/client/<client_id>')
+api.add_resource(Query_Search,'/api/search_by_query/<text>')
+api.add_resource(FAQ_Search,'/api/search_by_faq/<text>')
 
 if __name__ == '__main__':
     app.run(port=environ.get("PORT", 8080), host='0.0.0.0', debug=True)

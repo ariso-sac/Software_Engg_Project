@@ -8,9 +8,12 @@ def GetFAQ(id):
     d = FAQ.query.filter_by(id=id).first()
     return d
 
-
 def GetAllFAQs():
     d = FAQ.query.all()
+    return d
+
+def GetSimilarFAQ(text):
+    d = FAQ.query.all(FAQ.issue.like('%'+text+'%'))
     return d
 
 # def GetCardsbyFAQ(id):
@@ -21,6 +24,13 @@ def GetAllFAQs():
 #     d=Scores.query.filter_by(query_id=id).all()
 #     return d
 
+class FAQ_Search(Resource):
+    def get(self,text):
+        g = GetSimilarFAQ(text)
+        a = []
+        for x in g:
+            a.append(x.GetDict())
+        return a
 
 class FAQ_Others(Resource):
     def get(self, query_id):
