@@ -13,6 +13,7 @@ from flask_cors import CORS
 
 # Create app
 app = Flask(__name__)
+CORS(app)
 app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 'super-secret'
 app.config['SECURITY_PASSWORD_SALT'] = 'HelloWorld'
