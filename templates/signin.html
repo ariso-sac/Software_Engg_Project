@@ -1,74 +1,39 @@
-<!-- signin.html -->
-{% extends 'base.html' %}
-{% block title %}
-Sign In Page
-{% endblock %}
-{% block content %}
-<h2>Sign in</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
 
-<!-- Show only if user is logged in -->
-{% if current_user.is_authenticated %}
-You are already logged in.
-
-<!-- Show if user is NOT logged in -->
-{% else %}
-<!-- msg that was passed while rendering template -->
-{{ msg }}<br>
-
-<main>
-    <div class="container">
-
-        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
-
-                        <div class="card mb-3">
-
-                            <div class="card-body">
-
-                                <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                    <p class="text-center small">Enter your personal details to create account</p>
-                                </div>
-
-                                <form class="row g-3 needs-validation" novalidate="" action="#" method="POST"
-                                    id="signin-form">
-
-                                    <div class="col-12">
-                                        <label for="yourEmail" class="form-label">Your Email</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail"
-                                            required="">
-                                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword"
-                                            required="">
-                                        <div class="invalid-feedback">Please enter your password!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Don't have an account? <a href="pages-login.html">Log
-                                                in</a></p>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-
-                    </div>
+<body>
+  
+    <form action="login.php" method="post">
+        <div class="min-h-screen bg-gray-100 text-gray-800 antialiased px-4 py-6 flex flex-col justify-center sm:py-12">
+            <div class="relative py-3 sm:max-w-xl mx-auto text-center">
+              <span class="text-2xl font-light">Login to your account</span>
+              <div class="relative mt-4 bg-white shadow-md sm:rounded-lg text-left">
+                <div class="h-2 bg-indigo-400 rounded-t-md"></div>
+                <div class="py-6 px-8">
+                  <label class="block font-semibold">Username or Email<label>
+                  <input type="text" placeholder="Email" name="email" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md">
+                  <label class="block mt-3 font-semibold">Password<label>
+                  <input type="password" placeholder="Password" name="password" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md">
+                  <div class="flex justify-between items-baseline">
+                    <button class="mt-4 bg-indigo-500 text-white py-2 px-6 rounded-lg">Login</button>
+                    <a href="#" class="text-sm hover:underline">Forgot password?</a>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
+          </div>
 
-    </div>
-</main>
+    </form>
 
-{% endif %}
-{% endblock %}
+
+
+
+</body>
+</html>

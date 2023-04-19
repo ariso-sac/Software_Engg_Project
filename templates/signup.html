@@ -1,95 +1,55 @@
-<!-- signup.html -->
-{% extends 'base.html' %}
-{% block title %}
-Sign Up Page
-{% endblock %}
-{% block content %}
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Show only if user is logged in -->
-{% if current_user.is_authenticated %}
-You are already logged in.
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Show if user is NOT logged in -->
-{% else %}
-{{ msg }}<br>
-<main>
-    <div class="container">
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.1/dist/flowbite.min.css" />
 
-        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+    <title>Document</title>
+</head>
 
-
-                        <div class="card mb-3">
-
-                            <div class="card-body">
-
-                                <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                    <p class="text-center small">Enter your personal details to create account</p>
-                                </div>
-
-                                <form class="row g-3 needs-validation" novalidate="" action="#" method="POST" id="signup-form">
-                                    <div class="col-12">
-                                        <label for="yourName" class="form-label">Your Name</label>
-                                        <input type="text" name="name" class="form-control" id="yourName" required="">
-                                        <div class="invalid-feedback">Please, enter your name!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourEmail" class="form-label">Your Email</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail"
-                                            required="">
-                                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword"
-                                            required="">
-                                        <div class="invalid-feedback">Please enter your password!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="yourRole" class="form-label">Role</label>
-                                        <input type="radio" name="options" id="option1" value=1 required> Admin </input>
-                                        <input type="radio" name="options" id="option2" value=2> Instructor </input>
-                                        <input type="radio" name="options" id="option3" value=3> Staff </input>
-                                        <input type="radio" name="options" id="option3" value=4> Student </input><br>
-                                        <div class="invalid-feedback">Please enter your Role!!</div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="terms" type="checkbox" value=""
-                                                id="acceptTerms" required="">
-                                            <label class="form-check-label" for="acceptTerms">I agree and accept the <a
-                                                    href="#">terms and conditions</a></label>
-                                            <div class="invalid-feedback">You must agree before submitting.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Already have an account? <a href="pages-login.html">Log
-                                                in</a></p>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-
+<body>
+    <form action="login.php" method="post">
+        <div class="min-h-screen bg-gray-100 text-gray-800 antialiased px-4 py-6 flex flex-col justify-center sm:py-12">
+            <div class="relative py-3 sm:max-w-xl mx-auto text-center">
+              <span class="text-2xl font-light">Login to your account</span>
+              <div class="relative mt-4 bg-white shadow-md sm:rounded-lg text-left">
+                <div class="h-2 bg-indigo-400 rounded-t-md"></div>
+                <div class="py-6 px-8">
+                  <label class="block font-semibold">Username or Email<label>
+                  <input type="text" placeholder="Email" name="email" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md">
+                  <label class="block mt-3 font-semibold">Password<label>
+                  <input type="password" placeholder="Password" name="password" class=" border w-full h-5 px-3 py-5 mt-2 hover:outline-none focus:outline-none focus:ring-1 focus:ring-indigo-600 rounded-md">
+                  <div class="flex justify-between items-baseline">
+                    
+                    <div class="flex items-center mb-4">
+                        <input id="default-radio-1" type="radio" value="student" name="type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Student</label>
                     </div>
+                    <div class="flex items-center">
+                        <input checked id="default-radio-2" type="radio" value="instructor" name="type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Instructor</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input checked id="default-radio-2" type="radio" value="admin" name="type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Admin</label>
+                    </div>
+
+
+
+                  </div>
+                  <button class="mt-4 bg-indigo-500 text-white py-2 px-6 rounded-lg">SignUp</button>
                 </div>
+              </div>
             </div>
+          </div>
 
-        </section>
+    </form>
+    
+</body>
 
-    </div>
-</main>
-<!-- End the if block -->
-{% endif %}
-{% endblock %}
+</html>
